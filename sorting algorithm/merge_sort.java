@@ -75,7 +75,7 @@ public class merge_sort{
         merge_sort ms = new merge_sort();
 
         int[] a = {1,5,2,3,4,0};
-        ms.sort(a, 0 a.length - 1);
+        ms.sort(a, 0, a.length - 1);
 
         for (int i : a){
             System.out.print(i+" ");

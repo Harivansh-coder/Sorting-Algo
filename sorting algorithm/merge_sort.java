@@ -5,28 +5,32 @@ public class merge_sort{
 
     
 
-    public void sort(int arr[]){
+    public void sort(int arr[], int l, int r){
 
-        int l,r,m;
+        int m;
 
-        if (arr.length > 1){
+        if (l < r){
 
+            
+            
+            m = (l + r) / 2;
+            sort(arr, l, m);
+            sort(arr, m + 1, r);
+            
             //FOR THE SUB_ARRAYS ARRAYS
             
-            m = (arr.length) / 2;
-
-            int n1 = m;
-            int n2 = arr.length - m; 
+            int n1 = m + 1 - l;
+            int n2 = r - m;
 
             int[] lef = new int[n1];
             int[] rig = new int[n2];
 
             for (int i = 0; i < n1; i++){
-                lef[i] = arr[i];
+                lef[i] = arr[l + i];
             }
 
             for (int i = 0; i < n2; i++){
-                rig[i] = arr[i+n2];
+                rig[i] = arr[m + 1 + i];
             }
 
             // sort(lef);
@@ -34,7 +38,7 @@ public class merge_sort{
 
             //MERGE SORT CONDITION
 
-            int i = 0, j = 0,k = 0;
+            int i = 0, j = 0,k = l;
 
             while (i < lef.length && j < rig.length){
 
@@ -53,11 +57,13 @@ public class merge_sort{
             while (i < lef.length){
                 arr[k] = lef[i];
                 i++;
+                k++;
             }
 
             while (j < rig.length){
                 arr[k] = rig[j];
                 j++;
+                k++;
             }
 
         }
@@ -69,7 +75,7 @@ public class merge_sort{
         merge_sort ms = new merge_sort();
 
         int[] a = {1,5,2,3,4,0};
-        ms.sort(a);
+        ms.sort(a, 0, a.length - 1);
 
         for (int i : a){
             System.out.print(i+" ");

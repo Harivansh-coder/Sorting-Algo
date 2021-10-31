@@ -5,66 +5,64 @@ public class MergeSort{
     public void sort(int arr[]){
 
 
-        if (arr.length > 1){
+        if (arr.length <= 1){
+            return ;        
+        }
 
-            //FOR THE SUB_ARRAYS ARRAYS
-            
-            int m = (arr.length) / 2;
+        int m = (arr.length) / 2;
 
-            int n1 = m ;
-            int n2 = arr.length - m; 
+        int n1 = m ;
+        int n2 = arr.length - m; 
 
-            int[] lef = new int[n1];
-            int[] rig = new int[n2];
+        int[] lef = new int[n1];
+        int[] rig = new int[n2];
 
-            for (int i = 0; i < n1; i++){
-                lef[i] = arr[i];
-            }
+         for (int i = 0; i < n1; i++){
+            lef[i] = arr[i];
+        }
 
-            for (int i = m; i < arr.length ; i++){
-                rig[i - m] = arr[i];
-            }
+        for (int i = m; i < arr.length; i++){
+            rig[i - m] = arr[i];
+        }
 
-            sort(lef);
-            sort(rig);
+        sort(lef);
+        sort(rig);
 
-            //MERGE SORT CONDITION
+        //MERGE SORT CONDITION
 
-            int i = 0, j = 0,k = 0;
+        int i = 0, j = 0,k = 0;
 
-            while (i < lef.length && j < rig.length){
+        while (i < lef.length && j < rig.length){
 
-                if (lef[i] > rig[j]){
-                    arr[k] = rig[j];
-                    j++;
-                    
-                }else {
-                    arr[k] = lef[i];
-                    i++;
-                }
-                k++;
+            if (lef[i] > rig[j]){
+                arr[k] = rig[j];
+                j++;
                 
-            }
-            
-            while (i < lef.length){
+            }else {
                 arr[k] = lef[i];
                 i++;
             }
-
-            while (j < rig.length){
-                arr[k] = rig[j];
-                j++;
-            }
-
+            k++;    
+        }
+            
+        while (i < lef.length){
+            arr[k] = lef[i];
+            i++;
+            k++;
         }
 
+        while (j < rig.length){
+            arr[k] = rig[j];
+            j++;
+            k++;
+        }
     }
 
     public static void main(String[] args) {
 
         MergeSort ms = new MergeSort();
 
-        int[] a = {1,5,2,3,4,2,1,5,2,3,4,2};
+        int[] a = {2,4,1,6,8,5,3,7,2,4,1,6};
 
         ms.sort(a);
 
@@ -74,3 +72,13 @@ public class MergeSort{
     
     }
 }
+
+/*
+Merge sort have a runtime complexity of nLogn
+n = length of array
+
+# Output
+
+    1 1 2 2 3 4 4 5 6 6 7 8 
+
+*/
